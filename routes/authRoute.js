@@ -9,7 +9,10 @@ const {
   blockUser,
   unblockUser,
   handleRefreshToken,
-  logoutUserController
+  logoutUserController,
+  updatePassword,
+  forgotPasswordToken,
+  resetPassword
 } = require('../controllers/userController')
 const {
   authMiddleware,
@@ -19,6 +22,10 @@ const router = express.Router()
 
 
 router.post('/register', createUser)
+router.post('/forgot-password-token', forgotPasswordToken)
+router.put('/reset-password/:token', resetPassword)
+
+router.put('/password', authMiddleware, updatePassword)
 router.post('/login', loginUserController)
 router.get('/all-users', getAllUser)
 router.get('/refresh', handleRefreshToken)
