@@ -9,7 +9,7 @@ const sendEmail = asyncHandler(async (data, req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: 'anhlq1209@gmail.com',
+      user: process.env.EMAIL_USERNAME,
       pass: process.env.EMAIL_PASSWORD,
     },
   });
