@@ -34,8 +34,7 @@ const loginUserController = asyncHandler(async (req, res) => {
         refreshToken: refreshToken
       },
       {
-        new: true,
-        runValidators: true
+        new: true
       }
     )
     res.cookie('refreshToken', refreshToken, {
@@ -141,7 +140,7 @@ const getUserById = asyncHandler(async (req, res) => {
 
   try {
     const getUser = await User.findById(id)
-    res.json({ getUser })
+    res.json(getUser)
   } catch (error) {
     throw new Error(error)
   }
@@ -154,7 +153,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 
   try {
     const deleteUser = await User.findByIdAndDelete(id)
-    res.json({ deleteUser })
+    res.json(deleteUser)
   } catch (error) {
     throw new Error(error)
   }
@@ -176,9 +175,7 @@ const blockUser = asyncHandler(async (req, res) => {
         runValidators: true
       }
     )
-    res.json({
-      message: 'User Blocked'
-    })
+    res.json(blockUser)
   } catch (error) {
     throw new Error(error)
   }
@@ -201,9 +198,7 @@ const unblockUser = asyncHandler(async (req, res) => {
         runValidators: true
       }
     )
-    res.json({
-      message: 'User UnBlocked'
-    })
+    res.json(unblockUser)
   } catch (error) {
     throw new Error(error)
   }
