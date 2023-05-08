@@ -56,7 +56,6 @@ const updateBrand = asyncHandler(async (req, res) => {
 const deleteBrand = asyncHandler(async (req, res) => {
   const { id } = req.params
   validateMongoDbId(id)
-  console.log(id)
 
   try {
     const deleteBrand = await Brand.findByIdAndDelete(id)
