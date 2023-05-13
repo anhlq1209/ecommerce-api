@@ -1,8 +1,5 @@
-const express = require('express')
-const {
-  authMiddleware,
-  isAdmin
-} = require('../middlewares/authMiddleware')
+const express = require("express");
+const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
 const {
   createBlog,
   getBlog,
@@ -10,15 +7,17 @@ const {
   deleteBlog,
   likeBlog,
   disLikeBlog,
-  uploadImages
-} = require('../controllers/blogController')
-const { blogImgResize, uploadPhoto } = require('../middlewares/uploadImage')
-const router = express.Router()
+  uploadImages,
+} = require("../controllers/blogController");
+const { blogImgResize, uploadPhoto } = require("../middlewares/uploadImage");
+const router = express.Router();
 
+// POST
+router.post("/", authMiddleware, isAdmin, createBlog);
 
-router.post('/', authMiddleware, isAdmin, createBlog)
-router.put('/likes', authMiddleware, isAdmin, likeBlog)
-router.put('/dislikes', authMiddleware, isAdmin, disLikeBlog)
+// PUT
+router.put("/likes", authMiddleware, isAdmin, likeBlog);
+router.put("/dislikes", authMiddleware, isAdmin, disLikeBlog);
 router.put(
   "/upload/:id",
   authMiddleware,
@@ -27,10 +26,13 @@ router.put(
   blogImgResize,
   uploadImages
 );
-router.put('/:id', authMiddleware, isAdmin, createBlog)
-router.delete('/:id', authMiddleware, isAdmin, deleteBlog)
-router.get('/:id', getBlog)
-router.get('/', getAllBlog)
+router.put("/:id", authMiddleware, isAdmin, createBlog);
 
+// DELETE
+router.delete("/:id", authMiddleware, isAdmin, deleteBlog);
 
-module.exports = router
+// GET
+router.get("/:id", getBlog);
+router.get("/", getAllBlog);
+
+module.exports = router;

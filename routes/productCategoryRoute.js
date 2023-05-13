@@ -1,19 +1,25 @@
-const express = require('express')
+const express = require("express");
 const {
   createPCategory,
   getPCategory,
   updatePCategory,
   deletePCategory,
-  getAllPCategory
-} = require('../controllers/productCategoryController')
-const router = express.Router()
+  getAllPCategory,
+} = require("../controllers/productCategoryController");
+const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
+const router = express.Router();
 
+// POST
+router.post("/", authMiddleware, isAdmin, createPCategory);
 
-router.post('/', createPCategory)
-router.put('/:id', updatePCategory)
-router.delete('/:id', deletePCategory)
-router.get('/:id', getPCategory)
-router.get('/', getAllPCategory)
+// PUT
+router.put("/:id", authMiddleware, isAdmin, updatePCategory);
 
+// DELETE
+router.delete("/:id", authMiddleware, isAdmin, deletePCategory);
 
-module.exports = router
+// GET
+router.get("/:id", getPCategory);
+router.get("/", getAllPCategory);
+
+module.exports = router;

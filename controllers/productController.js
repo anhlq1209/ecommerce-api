@@ -46,7 +46,6 @@ const deleteProduct = asyncHandler(async (req, res) => {
   try {
     const deleteProduct = await Product.findByIdAndDelete(id, req.body, {
       new: true,
-      runValidators: true,
     });
     res.json(deleteProduct);
   } catch (error) {

@@ -6,12 +6,19 @@ const {
   deleteBCategory,
   getAllBCategory
 } = require('../controllers/blogCategoryController')
+const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware')
 const router = express.Router()
 
+// POST
+router.post('/', authMiddleware, isAdmin, createBCategory)
 
-router.post('/', createBCategory)
-router.put('/:id', updateBCategory)
-router.delete('/:id', deleteBCategory)
+// PUT
+router.put('/:id', authMiddleware, isAdmin, updateBCategory)
+
+// DELETE
+router.delete('/:id', authMiddleware, isAdmin, deleteBCategory)
+
+// GET
 router.get('/:id', getBCategory)
 router.get('/', getAllBCategory)
 

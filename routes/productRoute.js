@@ -16,7 +16,10 @@ const {
 } = require("../middlewares/uploadImage");
 const router = express.Router();
 
+// POST
 router.post("/", authMiddleware, isAdmin, createProduct);
+
+// PUT
 router.put("/rating", authMiddleware, rating);
 router.put("/wishlist", authMiddleware, addToWishlist);
 router.put(
@@ -28,7 +31,11 @@ router.put(
   uploadImages
 );
 router.put("/:id", authMiddleware, isAdmin, updateProduct);
+
+// DELETE
 router.delete("/:id", authMiddleware, isAdmin, deleteProduct);
+
+// GET
 router.get("/:id", getProduct);
 router.get("/", getAllProduct);
 
