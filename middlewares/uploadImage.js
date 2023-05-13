@@ -60,8 +60,8 @@ const blogImgResize = async (req, res, next) => {
           quality: 90,
         })
         .toFile(`public/images/blogs/${file.filename}`);
-        fs.unlinkSync(`public/images/blogs/${file.filename}`);
-      })
+      fs.unlinkSync(`public/images/blogs/${file.filename}`);
+    })
   );
   next();
 };

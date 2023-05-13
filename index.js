@@ -1,7 +1,7 @@
-const bodyParser = require("body-parser");
 const express = require("express");
-const app = express();
-const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
+require("dotenv").config();
+
 const dbConnect = require("./config/dbConnect");
 const PORT = process.env.PORT || 4000;
 const authRoute = require("./routes/authRoute");
@@ -16,7 +16,7 @@ const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
-dotenv.config();
+const app = express();
 dbConnect();
 
 app.use(morgan("dev"));
