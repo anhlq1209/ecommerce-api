@@ -9,7 +9,8 @@ cloudinary.config({
 
 const cloudinaryUploadImg = async (fileToUpLoads) => {
   return new Promise((resolve) => {
-    cloudinary.uploader.upload(fileToUpLoads, (result) => {
+    console.log(resolve);
+    cloudinary.v2.uploader.upload(fileToUpLoads, (result) => {
       resolve(
         {
           url: result.secure_url,
@@ -26,7 +27,7 @@ const cloudinaryUploadImg = async (fileToUpLoads) => {
 
 const cloudinaryDeleteImg = async (fileToDelete) => {
   return new Promise((resolve) => {
-    cloudinary.uploader.destroy(fileToDelete, (result) => {
+    cloudinary.v2.uploader.destroy(fileToDelete, (result) => {
       resolve(
         {
           url: result.secure_url,
@@ -43,5 +44,5 @@ const cloudinaryDeleteImg = async (fileToDelete) => {
 
 module.exports = {
   cloudinaryUploadImg,
-  cloudinaryDeleteImg
+  cloudinaryDeleteImg,
 };
